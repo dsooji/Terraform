@@ -13,6 +13,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Debug
+      run: |
+        ls -l
+        pwd
+
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
       with:
