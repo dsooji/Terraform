@@ -41,3 +41,12 @@ jobs:
 
     - name: Terraform Apply
       run: terraform apply -auto-approve tfplan
+
+    - name: Mask sensitive data
+      run: |
+        echo "Masking sensitive data"
+        echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" | sed 's/./\*/g'
+        echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" | sed 's/./\*/g'
+
+    - name: Clean up resources
+      run: terraform destroy -auto-approve
