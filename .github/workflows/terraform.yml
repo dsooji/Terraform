@@ -25,6 +25,7 @@ jobs:
 
     - name: Configure AWS credentials
       run: |
+        mkdir -p $HOME/.aws
         echo "[default]" > $HOME/.aws/config
         echo "region = ap-south-1" >> $HOME/.aws/config
       env:
