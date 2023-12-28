@@ -12,14 +12,16 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        ref: main  # Adjust if needed
-        submodules: recursive
+
+    - name: Debug
+      run: |
+        ls -l
+        pwd
 
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 1.0.0  # Adjust if needed
+        terraform_version: 1.0.0
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -39,7 +41,3 @@ jobs:
 
     - name: Terraform Apply
       run: terraform apply -auto-approve tfplan
-
-    - name: Set Output
-      id: my_step_id
-      run: echo "my_output=some_value" >> $GITHUB_ENV
