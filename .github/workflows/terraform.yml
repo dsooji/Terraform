@@ -37,7 +37,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-south-1
+        config-file: $HOME/.aws/config_terraform
         profile-name: Deepen
 
       env:
@@ -54,3 +54,6 @@ jobs:
 
     - name: Terraform Apply
       run: terraform apply -auto-approve tfplan
+
+    - name: Clean up resources
+      run: terraform destroy -auto-approve
