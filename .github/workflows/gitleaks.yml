@@ -1,0 +1,23 @@
+name: Gitleaks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Gitleaks
+        uses: zricethezav/gitleaks-action@v1.1.0
+        with:
+          config: ./.gitleaks.toml
+          report-path: gitleaks-report.json
+          log-level: debug
